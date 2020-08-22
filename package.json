@@ -1,9 +1,11 @@
 {
   "name": "@solness/auth",
   "version": "0.0.0",
-  "description": "Solness core module",
+  "description": "Solness auth module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "dist/"
+    "dist/**/*"
   ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
@@ -13,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sergiubutnarasu/solness.core.git"
+    "url": "git+https://github.com/sergiubutnarasu/solness.auth.git"
   },
   "author": "Sergiu Butnarasu",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sergiubutnarasu/solness.core/issues"
+    "url": "https://github.com/sergiubutnarasu/solness.auth/issues"
   },
-  "homepage": "https://github.com/sergiubutnarasu/solness.core#readme",
+  "homepage": "https://github.com/sergiubutnarasu/solness.auth#readme",
   "publishConfig": {
     "access": "public"
   },
