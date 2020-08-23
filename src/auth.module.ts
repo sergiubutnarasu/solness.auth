@@ -16,19 +16,20 @@ import { JwtStrategy, LocalStrategy } from './strategies';
     PassportModule.register({ defaultStrategy: 'jwt' }),
     TypeOrmModule.forFeature([RefreshToken]),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
-  exports: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {
   static forRoot(userService: any): DynamicModule {
     return {
       module: AuthModule,
       providers: [
+        LocalStrategy,
+        JwtStrategy,
         {
           provide: 'USER_SERVICE',
           useClass: userService,
         },
       ],
+      exports: [AuthService, LocalStrategy, JwtStrategy],
     };
   }
 }
