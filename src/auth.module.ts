@@ -1,10 +1,10 @@
-import { DynamicModule, Module, Provider } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppHelper } from '@solness/core';
 import { AuthKeys, RefreshToken } from './objects';
-import { AuthService, UserService } from './services';
+import { AuthService } from './services';
 import { JwtStrategy, LocalStrategy } from './strategies';
 
 @Module({
@@ -17,6 +17,7 @@ import { JwtStrategy, LocalStrategy } from './strategies';
     TypeOrmModule.forFeature([RefreshToken]),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
+  exports: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {
   static forRoot(userService: any): DynamicModule {
