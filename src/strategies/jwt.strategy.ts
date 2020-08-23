@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { AppHelper, UserContext } from '@solness/core';
 import { Strategy } from 'passport-jwt';
@@ -8,7 +8,10 @@ import { UserService } from '../services';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private readonly userService: UserService) {
+  constructor(
+    @Inject('USER_SERVICE')
+    private readonly userService: UserService,
+  ) {
     super({
       jwtFromRequest: AuthHelper.computeJwtToken(),
       ignoreExpiration: false,
