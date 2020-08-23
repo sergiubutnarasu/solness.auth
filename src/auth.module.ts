@@ -29,7 +29,6 @@ export class AuthModule {
           useClass: userService,
         },
       ],
-      exports: [AuthService, LocalStrategy, JwtStrategy],
     };
   }
 }
