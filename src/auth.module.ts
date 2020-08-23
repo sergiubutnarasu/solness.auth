@@ -25,7 +25,7 @@ export class AuthModule {
       providers: [
         {
           provide: 'USER_SERVICE',
-          useClass: userService,
+          useExisting: userService,
         },
       ],
     };
