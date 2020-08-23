@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
@@ -15,6 +15,8 @@ import { UserService } from './user.service';
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
+
+    @Inject('USER_SERVICE')
     private readonly userService: UserService,
 
     @InjectRepository(RefreshToken)

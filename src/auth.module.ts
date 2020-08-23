@@ -19,15 +19,14 @@ import { JwtStrategy, LocalStrategy } from './strategies';
   providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {
-  static forRoot(userService: any, providers?: Provider[]): DynamicModule {
+  static forRoot(userService: any): DynamicModule {
     return {
       module: AuthModule,
       providers: [
         {
-          provide: UserService,
+          provide: 'USER_SERVICE',
           useClass: userService,
         },
-        ...providers,
       ],
     };
   }
