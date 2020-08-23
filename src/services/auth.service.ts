@@ -1,14 +1,14 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { InjectRepository } from '@nestjs/typeorm';
 import {
   CryptoHelper,
   DateHelper,
   EmailHelper,
   StringHelper,
 } from '@solness/core';
-import { MoreThanOrEqual, Repository } from 'typeorm';
+import { MoreThanOrEqual } from 'typeorm';
 import { RefreshToken } from '../objects';
+import { AuthRepository } from './../repositories';
 import { UserService } from './user.service';
 
 @Injectable()
@@ -19,8 +19,7 @@ export class AuthService {
     @Inject('USER_SERVICE')
     private readonly userService: UserService,
 
-    @InjectRepository(RefreshToken)
-    private readonly refreshTokenRepository: Repository<RefreshToken>,
+    private readonly refreshTokenRepository: AuthRepository,
   ) {}
 
   private splitToken(token: string) {

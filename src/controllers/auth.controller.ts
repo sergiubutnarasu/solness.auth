@@ -6,10 +6,11 @@ import {
   Request,
   UnauthorizedException,
   UseGuards,
+  Controller,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AuthHelper } from './helpers';
-import { AuthService } from './services';
+import { AuthHelper } from './../helpers';
+import { AuthService } from './../services';
 
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

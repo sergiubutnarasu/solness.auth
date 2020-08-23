@@ -1,3 +1,3 @@
 export enum AuthKeys {
-  AuthSecret = 'AuthSecret',
+  AuthSecret = 'CORE_AUTH_SECRET',
 }

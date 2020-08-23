@@ -3,7 +3,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppHelper } from '@solness/core';
-import { AuthKeys, RefreshToken } from './objects';
+import { AuthKeys } from './objects';
+import { AuthRepository } from './repositories';
 import { AuthService } from './services';
 import { JwtStrategy, LocalStrategy } from './strategies';
 
@@ -14,9 +15,10 @@ import { JwtStrategy, LocalStrategy } from './strategies';
       signOptions: { expiresIn: '10m' },
     }),
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    TypeOrmModule.forFeature([RefreshToken]),
+    TypeOrmModule.forFeature([AuthRepository]),
   ],
-  providers: [LocalStrategy, JwtStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
+  exports: [AuthService],
 })
 export class AuthModule {
   static forRoot(userService: any): DynamicModule {
@@ -25,7 +27,7 @@ export class AuthModule {
       providers: [
         {
           provide: 'USER_SERVICE',
-          useExisting: userService,
+          useFactory: () => userService,
         },
       ],
     };

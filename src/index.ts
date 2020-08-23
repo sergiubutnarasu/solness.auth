@@ -1,3 +1,5 @@
+export { AuthModule as default } from './auth.module';
+export { AuthController } from './controllers';
 export { Access, CurrentUser, Roles } from './decorators';
 export {
   GraphQlAccessGuard,
@@ -8,5 +10,3 @@ export {
 export { AuthKeys, RefreshToken } from './objects';
 export { AuthService } from './services';
 export { JwtStrategy, LocalStrategy } from './strategies';
-export { AuthController } from './auth.controller';
-export { AuthModule as default } from './auth.module';
