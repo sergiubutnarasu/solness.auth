@@ -60,7 +60,7 @@ class AuthHelperClass {
     const signatureCookie: string = this.getCookieByName(req, 'signature');
     const authorization: string = accessToken
       ? accessToken
-      : req.headers.authorization.replace('Bearer ', '');
+      : req.headers.authorization?.replace('Bearer ', '');
 
     if (!authorization || !signatureCookie) {
       return null;
